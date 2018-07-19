@@ -41,12 +41,16 @@ export default class FuncParams extends Component {
     super(props)
     const { func } = props
     if (func) {
+      const checksum = crypto.createHash('sha256')
+        .update(func.spec['function'], 'utf8')
+        .digest()
+        .toString('hex')
       this.state = {
         name: func.metadata.name,
         handler: func.spec.handler,
         runtime: func.spec.runtime,
         deps: func.spec.deps,
-        checksum: `sha256:${crypto.createHash('sha256').update(func.spec.function, 'utf8').digest().toString('hex')}`
+        checksum: `sha256:${checksum}`
       }
     } else {
       this.state = initialState

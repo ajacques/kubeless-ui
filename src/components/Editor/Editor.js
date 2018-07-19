@@ -92,7 +92,7 @@ export default class Editor extends Component {
     const params = {
       ...func,
       spec: {
-        function: this.state.content,
+        'function': this.state.content,
         checksum: `sha256:${crypto.createHash('sha256').update(this.state.content).digest().toString('hex')}`
       }
     }
