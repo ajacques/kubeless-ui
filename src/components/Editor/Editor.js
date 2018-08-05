@@ -74,6 +74,11 @@ export default class Editor extends Component {
     this.isMac = navigator.platform.match(/(Mac|iPhone|iPod|iPad)/i)
   }
 
+  componentDidMount = () => {
+    this.runtimeToMode()
+      .then(mode => this.setState({ mode: mode }))
+  }
+
   componentWillReceiveProps(nextProps: { [string]: any }) {
     if (nextProps.func !== this.props.func) {
       this.setState({
@@ -142,7 +147,7 @@ export default class Editor extends Component {
 
   render() {
     const { func } = this.props
-    let mode = this.runtimeToMode()
+    const { mode } = this.state
     return (
       <div
         className='editor'
@@ -154,7 +159,7 @@ export default class Editor extends Component {
         <div className='editorInnerContainer'>
           {!func && this.renderEmptyView()}
           {func && this.renderHeader()}
-          {func && (
+          {func && mode &&(
             <AceEditor
               mode={mode}
               theme='chrome'
