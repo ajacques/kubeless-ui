@@ -73,7 +73,7 @@ export default class FuncParams extends Component {
   }
 
   render() {
-    let runtimes = <option> Loading </option>
+    let runtimes = <option key='loading'>Loading</option>
     if (this.state.runtimes) {
       runtimes = this.state.runtimes.map(r => {
         return (
@@ -145,9 +145,7 @@ export default class FuncParams extends Component {
         <textarea
           placeholder={`Paste ${depFileName}`}
           onChange={e => this.handleChangeProperty('deps', e.target.value)}
-        >
-          {this.state.deps}
-        </textarea>
+          value={this.state.deps} />
       </div>
     )
   }
