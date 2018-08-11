@@ -159,7 +159,7 @@ export default class Editor extends Component {
         <div className='editorInnerContainer'>
           {!func && this.renderEmptyView()}
           {func && this.renderHeader()}
-          {func && mode &&(
+          {func && mode && (
             <AceEditor
               mode={mode}
               theme='chrome'
